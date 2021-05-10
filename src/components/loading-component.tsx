@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from 'react-native';
 /**
  * Renderiza loading genérico centrado, necesita un contenedor
  * o de lo contrario ocupará todo el espacio disponible, dado que tiene flex: 1
- * s
+ * 
  * @returns {JSX.Element}
  */
 const LoadingComponent = () => (

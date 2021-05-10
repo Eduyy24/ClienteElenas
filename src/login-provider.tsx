@@ -26,7 +26,7 @@ const LoginProvider = (): JSX.Element => {
 
   !result.data && Login({variables: {cellphone: '+573057199995',password: 'nueva123'}});
 
-  if(token){
+  if(!token){
     return (
       <LoadingComponent />
     )
