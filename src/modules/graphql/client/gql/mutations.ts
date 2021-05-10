@@ -1,9 +1,12 @@
 import {gql} from '@apollo/client';
 
 export const LOGIN_GQL = gql`
-  mutation Login($cellphone: String!, $password: String!) {
-    login(cellphone: $cellphone, password: $password) {
-      token
+  fragment authFields on AuthInfo {
+    token
+  }
+  mutation Login {
+    login(cellphone:"+573057199995", password:"nueva123"){
+      ...authFields
     }
   }
 `;

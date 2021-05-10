@@ -9,7 +9,7 @@ export default class ApolloConfig {
   }
 
   private httpLink = createHttpLink({
-    uri: 'https://onboarding-redesign.dev.elenas.la/gql/',
+    uri: 'https://jr-fix-accounting-operation-types.dev.elenas.la/gql/',
   });
 
   private authLink = setContext(async (_, { headers }) => {

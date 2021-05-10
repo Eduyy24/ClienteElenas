@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import Home from './src/pages/home/home';
 
 import { getLoginMutation } from './src/modules/graphql/client/client.repo';
@@ -9,6 +9,7 @@ import ApolloConfig from './src/modules/graphql/apollo';
 
 export default function App() {
   const client = new ApolloConfig().getApolloClient();
+
   return (
     <ApolloProvider client={client}>
       <RenderProvider />
@@ -25,10 +26,10 @@ const RenderProvider = () => {
       console.log(result.data);
       setToken(result.data.login.token)
     }
-  }, [result]);
+  }, [result.data]);
 
-  !token && Login({variables: {cellphone: '+573057199995',password: 'nueva123'}});
-  
+  !result.data && Login({variables: {cellphone: '+573057199995',password: 'nueva123'}});
+
   if(!token){
     return (
       <View>
@@ -43,5 +44,4 @@ const RenderProvider = () => {
       </ApolloProvider>
     )
   }
-    
 }
