@@ -8,7 +8,7 @@ export type Props = {
 }
 
 /**
- * 
+ * Renderiza input para diligenciamiento de información
  * @param {string} props.label Label del input
  * @param {(text: string) => void} props.onChangeText Callback para el cambio de texto
  * @returns {JSX.Element} InputForm

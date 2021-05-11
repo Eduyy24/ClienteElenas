@@ -10,22 +10,24 @@ export const getLoginMutation = () => useMutation(LOGIN_GQL);
 /**
  * Hook que ejecuta el Query para @var {CLIENTS_SEARCH_GQL},
  * no implementar fuera de un componente
- * @returns {ClientOutputModel[]}
+ * @returns object
+ * @var {clients}, datos que contiene la lista de clientes a renderizar
+ * @var {refetch}, metodo que permite realizar un actualización de la consulta
  */
-export const getClients = (): ClientOutputModel[] => {
-  const clientsData = useQuery(CLIENTS_SEARCH_GQL)
+export const getClients = () => {
+  const {data, error, refetch} = useQuery(CLIENTS_SEARCH_GQL)
   const [clients, setClients] = useState(Array<ClientOutputModel>(0))
   
   useEffect(() => {
-    if (clientsData.data) {
-      setClients(clientsData.data.clientsSearch.results);
+    if (data) {
+      setClients(data.clientsSearch.results);
     }
-    if(clientsData.error) {
+    if(error) {
       // manejar, notificar el error "crashlitycs"
     }
-  }, [clientsData.data]);
+  }, [data, error]);
 
-  return clients;
+  return {clients, refetch};
 }
 
 

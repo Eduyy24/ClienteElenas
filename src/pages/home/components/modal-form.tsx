@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Modal,
   View,
   TouchableOpacity,
   StyleSheet,
   Text,
-  ScrollView
+  ScrollView,
+  Alert
 } from 'react-native';
 import ButtonFlex from '../../../components/button-flex';
 import InputForm from '../../../components/input-form';
+import { TEXT_ERROR } from '../../../config/constans';
 import { EmptyFuntion } from '../../../config/types';
+import { useCreateClient } from '../../../modules/graphql/client/ClientController';
 import { ClientInputModel } from '../../../modules/graphql/client/model/ClientModel';
 
 type Props = {
   visibleModal: boolean;
   onPressCloseModal: EmptyFuntion;
   client: ClientInputModel;
+  type?: 'create' | 'update';
+  onPressButton?: () => {}
 };
 
 /**
@@ -27,6 +32,23 @@ type Props = {
  */
 export default function ModalForm(props: Props): JSX.Element {
   const { visibleModal, onPressCloseModal} = props;
+  const [client, setClient] = useState(new ClientInputModel())
+
+  useEffect(() => {
+    if(props.client){
+      setClient(props.client)
+    }
+  }, [props.client])
+
+
+  const createClient = useCreateClient(
+    () => {
+     
+      Alert.alert('Creación Exitosa')
+    },
+    () => {Alert.alert(TEXT_ERROR)},
+  )
+  
   return (
     <Modal visible={visibleModal} animationType="fade">
       <View style={styles.containerModal}>
@@ -39,7 +61,7 @@ export default function ModalForm(props: Props): JSX.Element {
         </View>
         <Text style={styles.textTitle}>Crear cliente</Text>
         <View style={styles.sectionForm}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <InputForm label="Nombre" onChangeText={()=>{}} />
             <InputForm label="Apellido" onChangeText={()=>{}} />
             <InputForm label="Cédula" onChangeText={()=>{}} />

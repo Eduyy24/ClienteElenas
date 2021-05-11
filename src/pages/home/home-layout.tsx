@@ -1,27 +1,27 @@
-import { useMutation } from '@apollo/client';
 import React, { useState } from 'react'
-import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
-import { TEXT_ERROR } from '../../config/constans';
-import { useCreateClient, getClients } from '../../modules/graphql/client/ClientController';
+import { getClients } from '../../modules/graphql/client/ClientController';
 import { ClientInputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
 import ModalForm from './components/modal-form';
 
 
 const HomeLayout = () => {
-  let clients = getClients()
-  const createClient = useCreateClient(
-    () => {
-      clients = getClients();
-      Alert.alert('Creación Exitosa')
-    },
-    () => {Alert.alert(TEXT_ERROR)},
-  )
-  const onPressCreateClient = () => createClient(new ClientInputModel)
+  let client = new ClientInputModel() // variable de paso, no re-render
+  const [stateModal, setStateModal] = useState(false)
+  const {clients, refetch} = getClients()
 
-  const [client, setClient] = useState(new ClientInputModel())
+  const onPressCreateClient = () => {
+    setStateModal(true)
+  }
+
+  const onPressCloseModal = () => {
+    client = new ClientInputModel();
+    refetch()
+    setStateModal(false)
+  }
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
@@ -35,7 +35,7 @@ const HomeLayout = () => {
               data={clients}
               renderItem={({ item, index}) => <ItemClientList item={item} index={index} />}
               refreshing={false}
-              onRefresh={() => clients = getClients()}
+              onRefresh={() => refetch()}
             />
           ) : (
             <LoadingComponent />
@@ -46,8 +46,8 @@ const HomeLayout = () => {
         <ButtonFlex title="CREAR" onPress={onPressCreateClient} />
       </View>
       <ModalForm 
-        visibleModal={true}
-        onPressCloseModal={() => {}} 
+        visibleModal={stateModal}
+        onPressCloseModal={onPressCloseModal} 
         client={client}
       />
     </View>
