@@ -43,7 +43,7 @@ const HomeLayout = () => {
         }
       </View>
       <View style={styles.sectionFooter}>
-        <ButtonFlex onPress={onPressCreateClient} />
+        <ButtonFlex title="CREAR" onPress={onPressCreateClient} />
       </View>
       <ModalForm 
         visibleModal={true}

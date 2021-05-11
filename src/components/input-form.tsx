@@ -46,6 +46,6 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 16,
-    marginVertical: '2%',
+    marginVertical: 10,
   },
 });

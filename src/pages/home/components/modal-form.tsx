@@ -4,8 +4,10 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
+import ButtonFlex from '../../../components/button-flex';
 import InputForm from '../../../components/input-form';
 import { EmptyFuntion } from '../../../config/types';
 import { ClientInputModel } from '../../../modules/graphql/client/model/ClientModel';
@@ -37,7 +39,19 @@ export default function ModalForm(props: Props): JSX.Element {
         </View>
         <Text style={styles.textTitle}>Crear cliente</Text>
         <View style={styles.sectionForm}>
-          <InputForm label="Nombre" onChangeText={()=>{}} />
+          <ScrollView>
+            <InputForm label="Nombre" onChangeText={()=>{}} />
+            <InputForm label="Apellido" onChangeText={()=>{}} />
+            <InputForm label="Cédula" onChangeText={()=>{}} />
+            <InputForm label="Celular" onChangeText={()=>{}} />
+            <InputForm label="Correo electrónico" onChangeText={()=>{}} />
+            <InputForm label="País" onChangeText={()=>{}} />
+            <InputForm label="Ciudad" onChangeText={()=>{}} />
+            <InputForm label="Dirección" onChangeText={()=>{}} />
+            <View style={styles.containerButton}>
+              <ButtonFlex title="GUARDAR" onPress={() => {}} />
+            </View>
+          </ScrollView>
         </View>
       </View>
     </Modal>
@@ -45,11 +59,16 @@ export default function ModalForm(props: Props): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  containerButton:{
+    marginTop: 24,
+    height: 40,
+  },
   textTitle: {
     textAlign: 'center',
     fontSize: 18,
   },
   sectionForm: {
+    flex: 1,
     padding: 16,
   },
   containerModal: {

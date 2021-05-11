@@ -1,20 +1,23 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
 import { BACK_COLOR, WHITE_COLOR } from '../config/constans'
+import { EmptyFuntion } from '../config/types'
 
 type Props  = {
-  onPress: () => void;
+  onPress: EmptyFuntion;
+  title: string;
 }
 /**
  * Renderiza boton con nombre centrado que se extiende por todo el contenedor
  * dado que su contenedor es flex: 1.
- * @param props.onPress callback para el evento de touch
+ * @param {EmptyFuntion} props.onPress Callback para el evento de touch
+ * @param {string} props.title Label del botón
  * @returns {JSX.Element}
  */
 const ButtonFlex = (props: Props): JSX.Element => {
   return (
     <TouchableOpacity style={styles.container} onPress={props.onPress}>
-      <Text style={styles.textButton}>CREAR</Text>
+      <Text style={styles.textButton}>{props.title}</Text>
     </TouchableOpacity>
   )
 }
