@@ -18,10 +18,24 @@ export class StateModel {
 }
 
 /**
- * Define el modelo para un cliente
+ * Define el modelo para address
  * @class
  */
-export default class ClientModel {
+ export class AddressModel {
+  streetAddress = ''
+  city = ''
+  cityId = 0
+  stateShortCode = ''
+  stateId = 0
+  country = ''
+}
+
+
+/**
+ * Define el modelo de salida para un cliente
+ * @class
+ */
+export class ClientOutputModel {
   id = '';
   firstName = '';
   lastName = '';
@@ -30,5 +44,19 @@ export default class ClientModel {
   cellphone = '';
   email = '';
   city = '';
-  state = new StateModel();
+  state?: StateModel;
+}
+
+
+/**
+ * Define el modelo de entrada para un cliente
+ * @class
+ */
+ export  class ClientInputModel {
+  firstName = '';
+  lastName = '';
+  cedula = '';
+  address = new AddressModel();
+  cellphone = '';
+  email = '';
 }

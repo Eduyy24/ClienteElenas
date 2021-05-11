@@ -1,5 +1,5 @@
 import {gql} from '@apollo/client';
-import { AUTH_FIELDS } from './fragments';
+import { AUTH_FIELDS, CLIENT_FIELDS_GQL } from './fragments';
 
 export const LOGIN_GQL = gql`
 ${AUTH_FIELDS}
@@ -8,4 +8,13 @@ mutation Login($cellphone: String!, $password: String!) {
     ...authFields
   }
 }
+`;
+
+export const CREATE_CLIENT_GQL = gql`
+  ${CLIENT_FIELDS_GQL}
+  mutation CreateClient($input: ClientInput!) {
+    createClient(input: $input) {
+      ...clientFields
+    }
+  }
 `;

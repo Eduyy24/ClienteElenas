@@ -1,9 +1,9 @@
 import React from 'react'
 import { View,Text, StyleSheet } from 'react-native'
-import ClientModel from '../../../modules/graphql/client/model/ClientModel'
+import {ClientOutputModel} from '../../../modules/graphql/client/model/ClientModel'
 
 type Props = {
-  item: ClientModel,
+  item: ClientOutputModel,
   index: number
 }
 
