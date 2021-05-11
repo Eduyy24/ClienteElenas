@@ -1,8 +1,10 @@
 import {useMutation, useQuery} from '@apollo/client';
 import { useEffect, useState } from 'react';
+import { Alert } from 'react-native';
+import { TEXT_ERROR } from '../../../config/constans';
 import { CREATE_CLIENT_GQL, LOGIN_GQL } from './gql/mutations';
 import { CLIENTS_SEARCH_GQL } from './gql/queries';
-import {ClientOutputModel} from './model/ClientModel';
+import {ClientInputModel, ClientOutputModel} from './model/ClientModel';
 
 export const getLoginMutation = () => useMutation(LOGIN_GQL);
 
@@ -31,19 +33,23 @@ export const getClients = (): ClientOutputModel[] => {
 /**
  * Hook Ejecuta la Mutación para @var {CREATE_CLIENT_GQL},
  * no implementar fuera de un componente
- * @returns {}
+ * @param {ClientInputModel}
  */
- export const createClient = () => {
+ export const createClient = (client: ClientInputModel) => {
   const [launch, result] = useMutation(CREATE_CLIENT_GQL)
-
 
   useEffect(() => {
     if (result.data) {
+      Alert.alert(TEXT_ERROR)
     }
     if(result.error) {
-      // manejar, notificar el error "crashlitycs"
+      Alert.alert(TEXT_ERROR)
     }
   }, [result.data]);
 
-  return '';
+  launch({
+    variables: {
+        input: {...client},
+    },
+  });
 }

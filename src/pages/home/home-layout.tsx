@@ -8,8 +8,6 @@ import ItemClientList from './components/item-client-list';
 
 const HomeLayout = () => {
   let clients = getClients()
-  console.log(clients);
-  
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
