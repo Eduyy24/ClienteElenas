@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native';
+import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
 import { getClients } from '../../modules/graphql/client/ClientController';
 import ItemClientList from './components/item-client-list';
@@ -29,6 +30,9 @@ const HomeLayout = () => {
           )
         }
       </View>
+      <View style={styles.sectionFooter}>
+        <ButtonFlex onPress={()=>{}} />
+      </View>
     </View>
   )
 }
@@ -46,6 +50,10 @@ const styles = StyleSheet.create({
   sectionList:{
     flex: 1,
     padding: 16,
+  },
+  sectionFooter:{
+    flex: 1,
+    maxHeight: 40,
   }
 })
 
