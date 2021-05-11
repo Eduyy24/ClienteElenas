@@ -1,6 +1,6 @@
 import React from 'react'
 import { TouchableOpacity, Text, StyleSheet } from 'react-native'
-import { BACK_COLOR, WHITE_COLOR } from './config/constans'
+import { BACK_COLOR, WHITE_COLOR } from '../config/constans'
 
 type Props  = {
   onPress: () => void;
