@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React from 'react'
+import React, { useState } from 'react'
 import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
@@ -7,11 +7,11 @@ import { TEXT_ERROR } from '../../config/constans';
 import { useCreateClient, getClients } from '../../modules/graphql/client/ClientController';
 import { ClientInputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
+import ModalForm from './components/modal-form';
 
 
 const HomeLayout = () => {
   let clients = getClients()
-
   const createClient = useCreateClient(
     () => {
       clients = getClients();
@@ -19,8 +19,9 @@ const HomeLayout = () => {
     },
     () => {Alert.alert(TEXT_ERROR)},
   )
-
   const onPressCreateClient = () => createClient(new ClientInputModel)
+
+  const [client, setClient] = useState(new ClientInputModel())
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
@@ -44,6 +45,11 @@ const HomeLayout = () => {
       <View style={styles.sectionFooter}>
         <ButtonFlex onPress={onPressCreateClient} />
       </View>
+      <ModalForm 
+        visibleModal={true}
+        onPressCloseModal={() => {}} 
+        client={client}
+      />
     </View>
   )
 }
