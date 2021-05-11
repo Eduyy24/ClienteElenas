@@ -46,7 +46,7 @@ export const getClients = () => {
  *    <Button title="Crear" onPress={onPressButton}/>
  *  )
  * }
- * @return Funtion @type{(client: ClientInputModel) => Funtion }
+ * @return Funtion @type{(client: ClientInputModel) => Function }
  */
  export const useCreateClient = (
     successResolve?: EmptyFuntion,
