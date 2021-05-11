@@ -1,13 +1,26 @@
+import { useMutation } from '@apollo/client';
 import React from 'react'
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, FlatList, StyleSheet, Alert } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
-import { getClients } from '../../modules/graphql/client/ClientController';
+import { TEXT_ERROR } from '../../config/constans';
+import { useCreateClient, getClients } from '../../modules/graphql/client/ClientController';
+import { ClientInputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
 
 
 const HomeLayout = () => {
   let clients = getClients()
+
+  const createClient = useCreateClient(
+    () => {
+      clients = getClients();
+      Alert.alert('Creación Exitosa')
+    },
+    () => {Alert.alert(TEXT_ERROR)},
+  )
+
+  const onPressCreateClient = () => createClient(new ClientInputModel)
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
@@ -29,7 +42,7 @@ const HomeLayout = () => {
         }
       </View>
       <View style={styles.sectionFooter}>
-        <ButtonFlex onPress={()=>{}} />
+        <ButtonFlex onPress={onPressCreateClient} />
       </View>
     </View>
   )

@@ -1,7 +1,6 @@
 import {useMutation, useQuery} from '@apollo/client';
 import { useEffect, useState } from 'react';
-import { Alert } from 'react-native';
-import { TEXT_ERROR } from '../../../config/constans';
+import { EmptyFuntion } from '../../../config/types';
 import { CREATE_CLIENT_GQL, LOGIN_GQL } from './gql/mutations';
 import { CLIENTS_SEARCH_GQL } from './gql/queries';
 import {ClientInputModel, ClientOutputModel} from './model/ClientModel';
@@ -32,22 +31,38 @@ export const getClients = (): ClientOutputModel[] => {
 
 /**
  * Hook Ejecuta la Mutación para @var {CREATE_CLIENT_GQL},
- * no implementar fuera de un componente
- * @param {ClientInputModel}
+ * no implementar fuera de un componente.
+ * Ejecucion de la funtion 
+ * @example 
+ * // Para un funtion component
+ * {
+ *  const createClient = useCreateClient()
+ *  const client = new Client()
+ *  const onPressButton = () => createClient(client)
+ * 
+ *  return (
+ *    <Button title="Crear" onPress={onPressButton}/>
+ *  )
+ * }
+ * @return Funtion @type{(client: ClientInputModel) => Funtion }
  */
- export const createClient = (client: ClientInputModel) => {
+ export const useCreateClient = (
+    successResolve?: EmptyFuntion,
+    errorResolve?: EmptyFuntion,
+    ) => {
   const [launch, result] = useMutation(CREATE_CLIENT_GQL)
 
   useEffect(() => {
+    console.log('useEffect', result);
     if (result.data) {
-      Alert.alert(TEXT_ERROR)
+      successResolve && successResolve()
     }
     if(result.error) {
-      Alert.alert(TEXT_ERROR)
+      errorResolve && errorResolve()
     }
-  }, [result.data]);
+  }, [result.data, result.error]);
 
-  launch({
+  return (client: ClientInputModel) => launch({
     variables: {
         input: {...client},
     },

@@ -48,6 +48,5 @@ export const CLIENT_FIELDS_GQL = gql`
     address
     cellphone
     email
-    city
   }
 `;
