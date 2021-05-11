@@ -13,7 +13,7 @@ const HomeLayout = () => {
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
-        <Text>Clientes Elenas</Text>
+        <Text style={styles.textTittle}>Clientes Elenas</Text>
       </View>
       <View style={styles.sectionList}>
         {
@@ -54,6 +54,11 @@ const styles = StyleSheet.create({
   sectionFooter:{
     flex: 1,
     maxHeight: 40,
+  },
+  textTittle: {
+    fontSize: 18,
+    fontStyle: 'italic',
+    fontWeight: '500',
   }
 })
 
