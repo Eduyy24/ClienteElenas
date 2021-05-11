@@ -1,12 +1,11 @@
 import {gql} from '@apollo/client';
+import { AUTH_FIELDS } from './fragments';
 
 export const LOGIN_GQL = gql`
-  fragment authFields on AuthInfo {
-    token
+${AUTH_FIELDS}
+mutation Login($cellphone: String!, $password: String!) {
+  login(cellphone: $cellphone, password: $password) {
+    ...authFields
   }
-  mutation Login {
-    login(cellphone:"+573057199995", password:"nueva123"){
-      ...authFields
-    }
-  }
+}
 `;

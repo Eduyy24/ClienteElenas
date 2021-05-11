@@ -7,7 +7,7 @@ import { View, Text, StyleSheet } from 'react-native';
  * 
  * @returns {JSX.Element}
  */
-const LoadingComponent = () => (
+const LoadingComponent = (): JSX.Element => (
   <View style={styles.container}>
     <Text style={styles.textLoading}>Cargando...</Text>
   </View>

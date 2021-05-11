@@ -1,7 +1,7 @@
 import React, {useEffect, useState } from 'react';
 import { ApolloProvider } from '@apollo/client';
 import { View, Text } from 'react-native';
-import { getLoginMutation } from './modules/graphql/client/client.repo';
+import { getLoginMutation } from './modules/graphql/client/ClientController';
 import Home from './pages/home/home';
 import ApolloConfig from './modules/graphql/apollo';
 import LoadingComponent from './components/loading-component';
@@ -19,11 +19,11 @@ const LoginProvider = (): JSX.Element => {
     
   useEffect(() => {
     if (result && result.data) {
-      console.log(result.data);
       setToken(result.data.login.token)
     }
   }, [result.data]);
 
+  // valido que no exista un resultado para evitar re-renders
   !result.data && Login({variables: {cellphone: '+573057199995',password: 'nueva123'}});
 
   if(!token){
