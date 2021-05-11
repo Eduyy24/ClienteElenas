@@ -18,6 +18,9 @@ export const getClients = (): ClientModel[] => {
     if (clientsData.data) {
       setClients(clientsData.data.clientsSearch.results);
     }
+    if(clientsData.error) {
+      // manejar, notificar el error "crashlitycs"
+    }
   }, [clientsData.data]);
 
   return clients;
