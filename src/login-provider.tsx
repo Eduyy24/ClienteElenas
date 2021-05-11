@@ -21,6 +21,9 @@ const LoginProvider = (): JSX.Element => {
     if (result && result.data) {
       setToken(result.data.login.token)
     }
+    if (result.error){
+      // notificar el error "crashlitycs"
+    }
   }, [result.data]);
 
   // valido que no exista un resultado para evitar re-renders
