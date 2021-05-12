@@ -1,7 +1,7 @@
 import {useMutation, useQuery} from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { EmptyFuntion } from '../../../config/types';
-import { CREATE_CLIENT_GQL, LOGIN_GQL } from './gql/mutations';
+import { CREATE_CLIENT_GQL, LOGIN_GQL, UPDATE_CLIENT_GQL } from './gql/mutations';
 import { CLIENTS_SEARCH_GQL, STATES_GQL } from './gql/queries';
 import {ClientInputModel, ClientOutputModel, StateModel} from './model/ClientModel';
 
@@ -66,7 +66,7 @@ export const useGetClients = () => {
  *    <Button title="Crear" onPress={onPressButton}/>
  *  )
  * }
- * @return Funtion @type{(client: ClientInputModel) => Function }
+ * @return Function @type{(client: ClientInputModel) => Function }
  */
  export const useCreateClient = (
     successResolve?: EmptyFuntion,
@@ -88,4 +88,49 @@ export const useGetClients = () => {
         input: {...client},
     },
   });
+}
+
+/**
+ * Hook Ejecuta la Mutación para @var {UPDATE_CLIENT_GQL},
+ * no implementar fuera de un componente.
+ * Ejecucion de la funtion 
+ * @example 
+ * // Para un funtion component
+ * {
+ *  const updateClient = useUpdateClient()
+ *  const client = new Client()
+ *  const onPressButton = () => updateClient(client)
+ * 
+ *  return (
+ *    <Button title="Update" onPress={onPressButton}/>
+ *  )
+ * }
+ * @return Function @type{(client: ClientInputModel) => Function }
+ */
+ export const useUpdateClient = (
+  successResolve?: EmptyFuntion,
+  errorResolve?: EmptyFuntion,
+  ) => {
+const [launch, result] = useMutation(UPDATE_CLIENT_GQL)
+
+useEffect(() => {
+  if (result.data) {
+    successResolve && successResolve()
+  }
+  if(result.error) {
+    errorResolve && errorResolve()
+  }
+}, [result.data, result.error]);
+
+return (client: ClientInputModel) => {
+  const id = client.id
+  client.id = undefined
+  
+  return launch({
+    variables: {
+        id,
+        input: {...client},
+    },
+  });
+}
 }

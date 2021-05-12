@@ -12,7 +12,7 @@ import ButtonFlex from '../../../components/button-flex';
 import InputForm from '../../../components/input-form';
 import { TEXT_ERROR } from '../../../config/constans';
 import { EmptyFuntion } from '../../../config/types';
-import { useCreateClient, useGetStates } from '../../../modules/graphql/client/ClientController';
+import { useCreateClient, useGetStates, useUpdateClient } from '../../../modules/graphql/client/ClientController';
 import { CityModel, ClientInputModel } from '../../../modules/graphql/client/model/ClientModel';
 
 type Props = {
@@ -40,6 +40,21 @@ export default function ModalForm(props: Props): JSX.Element {
   const [citiesData, setCitiesData] = useState(Array<CityModel>(0))
   const [states, setStates] = useState(Array<string>(0))
 
+  const createClient = useCreateClient(
+    () => {
+      props.onPressCloseModal()
+      Alert.alert('Creación Exitosa')
+    },
+    () => {Alert.alert(TEXT_ERROR)},
+  )
+
+  const updateClient = useUpdateClient(
+    () => {
+      props.onPressCloseModal()
+      Alert.alert('Actualización Exitosa')
+    },
+    () => {Alert.alert(TEXT_ERROR)},
+  )
 
   useEffect(() => {
     if (props.client) {
@@ -65,14 +80,6 @@ export default function ModalForm(props: Props): JSX.Element {
     return statesData.find((item) => item.id === id)?.name || ''
   }
 
-  const createClient = useCreateClient(
-    () => {
-      props.onPressCloseModal()
-      Alert.alert('Creación Exitosa')
-    },
-    () => {Alert.alert(TEXT_ERROR)},
-  )
-
   const onPressSaveClient = useCallback(() => {
     if(
       client.cedula !== '',
@@ -92,10 +99,23 @@ export default function ModalForm(props: Props): JSX.Element {
     }
   }, [client])
 
-  const onPressUpdateClient = () => {
-
-  }
-
+  const onPressUpdateClient = useCallback(() => {
+    if(
+      client.cedula !== '',
+      client.cellphone !== '',
+      client.email != '',
+      client.firstName !== '',
+      client.lastName !== '',
+      client.address.city !== '',
+      client.address.streetAddress !== '',
+      client.address.stateShortCode !== ''
+    ){
+      client.cellphone = `+57 ${client.cellphone}`
+      updateClient(client)
+    } else {
+      Alert.alert('Por favor diligenciar todos los campos')
+    }
+  }, [client])
 
   const setNameValue = (value: string) => {
     client.firstName = value;

@@ -23,13 +23,15 @@ const HomeLayout = () => {
   const onPressCloseModal = () => {
     refetch()
     setStateModal(false)
+    setClientRender(new ClientInputModel())
   }
 
   const onPressEditClient = (client: ClientOutputModel) => {
+    clientRender.id = client.id;
     clientRender.firstName = client.firstName;
     clientRender.lastName = client.lastName;
     clientRender.email = client.email;
-    clientRender.cellphone = client.cellphone;
+    clientRender.cellphone = client.cellphone.replace('+57 ', '');
     clientRender.cedula = client.cedula;
     clientRender.address.streetAddress = client.address;
     clientRender.address.stateId = client.state.id;

@@ -23,7 +23,7 @@ const LoginProvider = (): JSX.Element => {
     }
     if (result.error){
       // notificar el error "crashlitycs"
-    }
+    } 
   }, [result.data]);
 
   // valido que no exista un resultado para evitar re-renders

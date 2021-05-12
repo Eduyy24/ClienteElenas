@@ -37,7 +37,7 @@ export class StateModel {
  * @class
  */
 export class ClientOutputModel {
-  id = '';
+  id = 0;
   firstName = '';
   lastName = '';
   cedula = '';
@@ -54,6 +54,7 @@ export class ClientOutputModel {
  * @class
  */
  export  class ClientInputModel {
+  id?: number;
   firstName = '';
   lastName = '';
   cedula = '';
