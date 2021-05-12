@@ -5,25 +5,36 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
     "@types/react-native-material-menu": "^1.0.4",
-    "expo": "~41.0.1",
-    "expo-status-bar": "~1.0.4",
-    "graphql": "^15.5.0",
+    "expo": "41.0.1",
+    "expo-status-bar": "1.0.4",
+    "graphql": "15.5.0",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-41.0.0.tar.gz",
-    "react-native-material-menu": "^1.2.0",
-    "react-native-web": "~0.13.12"
+    "react-native-material-menu": "1.2.0",
+    "react-native-web": "0.13.12"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@testing-library/react": "^11.2.6",
+    "@testing-library/react-hooks": "^5.1.2",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
+    "jest": "^26.6.3",
+    "react-test-renderer": "^17.0.2",
     "typescript": "~4.0.0"
+  },
+  "jest": {
+    "testMatch": [
+      "**/__tests__/**/*.test.js"
+    ]
   },
   "private": true
 }
