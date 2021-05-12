@@ -9,3 +9,17 @@ export const CLIENTS_SEARCH_GQL = gql`
     }
   }
 `;
+
+export const STATES_GQL = gql`
+  query {
+    states {
+        id
+        shortCode
+        name
+        cities {
+            id
+            name
+        }
+    }
+  }
+`;

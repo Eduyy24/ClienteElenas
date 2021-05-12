@@ -14,6 +14,7 @@ export class CityModel {
 export class StateModel {
   id = '';
   name = '';
+  shortCode = '';
   cities = Array<CityModel>(0);
 }
 

@@ -36,8 +36,11 @@ export default function InputForm(props: Props): JSX.Element {
   };
 
   const searchOption = () => {
-    setOptions(props.selectList?.filter((item) => item.toLowerCase().includes(valueAuto.toLowerCase())).slice(0, 3) || [])
-    _menu.show();
+    if(valueAuto){
+      // filtro los primeros tres elementos de la lista las opciones que contengan el valor de entrada
+      setOptions(props.selectList?.filter((item) => item.toLowerCase().includes(valueAuto.toLowerCase())).slice(0, 3) || [])
+      _menu.show();
+    }
   }
 
   const onChangeTextAuto = (value: string) => {
@@ -66,15 +69,15 @@ export default function InputForm(props: Props): JSX.Element {
                   onChangeText={onChangeTextAuto}
                   value={valueAuto}
                 />
-                <TouchableOpacity
+                <TouchableOpacity // botón para busqueda del valor del input
                   style={styles.searhOption}
                   onPress={searchOption}
                 >
                   <Text>Buscar</Text>
                 </TouchableOpacity>
               </View>
-              <Menu ref={setMenuRef}>
-                {props.selectList && (
+              <Menu ref={setMenuRef}> 
+                {props.selectList && ( // libreria que renderia el resultado de la busqueda
                   options.map((item: string, index: number) => (
                     <MenuItem onPress={() => onPressOption(index)}>
                       {item}

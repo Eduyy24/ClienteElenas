@@ -113,7 +113,9 @@ export default function ModalForm(props: Props): JSX.Element {
               onChangeText={()=>{}} 
             />
             <InputForm 
-              label="Ciudad" 
+              label="Ciudad"
+              selectList={['hola', 'chao']}
+              type="selectSearch"
               onChangeText={()=>{}} 
             />
             <InputForm label="Dirección" onChangeText={setStreetAddressValue} />

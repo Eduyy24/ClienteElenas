@@ -2,8 +2,8 @@ import {useMutation, useQuery} from '@apollo/client';
 import { useEffect, useState } from 'react';
 import { EmptyFuntion } from '../../../config/types';
 import { CREATE_CLIENT_GQL, LOGIN_GQL } from './gql/mutations';
-import { CLIENTS_SEARCH_GQL } from './gql/queries';
-import {ClientInputModel, ClientOutputModel} from './model/ClientModel';
+import { CLIENTS_SEARCH_GQL, STATES_GQL } from './gql/queries';
+import {ClientInputModel, ClientOutputModel, StateModel} from './model/ClientModel';
 
 export const getLoginMutation = () => useMutation(LOGIN_GQL);
 
@@ -14,7 +14,7 @@ export const getLoginMutation = () => useMutation(LOGIN_GQL);
  * @var {clients}, datos que contiene la lista de clientes a renderizar
  * @var {refetch}, metodo que permite realizar un actualización de la consulta
  */
-export const getClients = () => {
+export const useGetClients = () => {
   const {data, error, refetch} = useQuery(CLIENTS_SEARCH_GQL)
   const [clients, setClients] = useState(Array<ClientOutputModel>(0))
   
@@ -30,6 +30,26 @@ export const getClients = () => {
   return {clients, refetch};
 }
 
+/**
+ * Hook que ejecuta el Query para @var {STATES_GQL},
+ * no implementar fuera de un componente
+ * @returns {StateModel[]} contiene la lista de estados a renderizar
+ */
+ export const useGetStates = (): StateModel[] => {
+  const {data, error} = useQuery(STATES_GQL)
+  const [states, setStates] = useState(Array<StateModel>(0))
+  
+  useEffect(() => {
+    if (data) {
+      setStates(data.states.results);
+    }
+    if(error) {
+      // manejar, notificar el error "crashlitycs"
+    }
+  }, [data, error]);
+
+  return states;
+}
 
 /**
  * Hook Ejecuta la Mutación para @var {CREATE_CLIENT_GQL},

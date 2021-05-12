@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
-import { getClients } from '../../modules/graphql/client/ClientController';
+import { useGetClients } from '../../modules/graphql/client/ClientController';
 import { ClientInputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
 import ModalForm from './components/modal-form';
@@ -11,7 +11,7 @@ import ModalForm from './components/modal-form';
 const HomeLayout = () => {
   let client = new ClientInputModel() // variable de paso, para evitar hacer re-render
   const [stateModal, setStateModal] = useState(false)
-  const {clients, refetch} = getClients()
+  const {clients, refetch} = useGetClients()
   console.log(clients);
   
   const onPressCreateClient = () => {
