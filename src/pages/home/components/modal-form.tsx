@@ -106,7 +106,16 @@ export default function ModalForm(props: Props): JSX.Element {
             <InputForm value={client.cellphone} label="Celular" onChangeText={setCellphoneValue} />
             <InputForm label="Correo electrónico" onChangeText={setEmailValue} />
             <InputForm label="País" onChangeText={setCountryValue} />
-            <InputForm label="Ciudad" onChangeText={()=>{}} />
+            <InputForm 
+              label="Departamento"
+              selectList={['hola', 'chao']}
+              type="selectSearch"
+              onChangeText={()=>{}} 
+            />
+            <InputForm 
+              label="Ciudad" 
+              onChangeText={()=>{}} 
+            />
             <InputForm label="Dirección" onChangeText={setStreetAddressValue} />
             <View style={styles.containerButton}>
               <ButtonFlex title="GUARDAR" onPress={onPressSaveClient} />
