@@ -12,7 +12,6 @@ const HomeLayout = () => {
   let client = new ClientInputModel() // variable de paso, para evitar hacer re-render
   const [stateModal, setStateModal] = useState(false)
   const {clients, refetch} = useGetClients()
-  console.log(clients);
   
   const onPressCreateClient = () => {
     setStateModal(true)

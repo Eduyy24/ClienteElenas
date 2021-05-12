@@ -15,19 +15,19 @@ export const getLoginMutation = () => useMutation(LOGIN_GQL);
  * @var {refetch}, metodo que permite realizar un actualización de la consulta
  */
 export const useGetClients = () => {
-  const {data, error, refetch} = useQuery(CLIENTS_SEARCH_GQL)
+  const clientsResult = useQuery(CLIENTS_SEARCH_GQL)
   const [clients, setClients] = useState(Array<ClientOutputModel>(0))
   
   useEffect(() => {
-    if (data) {
-      setClients(data.clientsSearch.results);
+    if (clientsResult.data) {
+      setClients(clientsResult.data.clientsSearch.results);
     }
-    if(error) {
+    if(clientsResult.error) {
       // manejar, notificar el error "crashlitycs"
     }
-  }, [data, error]);
+  }, [clientsResult.data, clientsResult.error]);
 
-  return {clients, refetch};
+  return {clients, refetch: clientsResult.refetch};
 }
 
 /**
@@ -36,17 +36,17 @@ export const useGetClients = () => {
  * @returns {StateModel[]} contiene la lista de estados a renderizar
  */
  export const useGetStates = (): StateModel[] => {
-  const {data, error} = useQuery(STATES_GQL)
+  const statesResult = useQuery(STATES_GQL)
   const [states, setStates] = useState(Array<StateModel>(0))
   
   useEffect(() => {
-    if (data) {
-      setStates(data.states.results);
+    if (statesResult.data) {
+      setStates(statesResult.data.states);
     }
-    if(error) {
+    if(statesResult.error) {
       // manejar, notificar el error "crashlitycs"
     }
-  }, [data, error]);
+  }, [statesResult.data, statesResult.error]);
 
   return states;
 }

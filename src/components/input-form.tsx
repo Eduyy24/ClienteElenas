@@ -16,7 +16,8 @@ export type Props = {
  * Renderiza input para diligenciamiento de información
  * @param {string} props.label Label del input
  * @param {string} props.value opcional, inserta el valor para el input
- * @param {(text: string) => void} props.onChangeText Callback para el cambio de texto
+ * @param {(text: string) => void} props.onChangeText Callback para el cambio de texto,
+ * aplica para el input por default y type: "selectSearch"
  * 
  * @returns {JSX.Element} InputForm
  */
@@ -33,6 +34,7 @@ export default function InputForm(props: Props): JSX.Element {
   const onPressOption = (index: number) => {
     _menu.hide();
     setValueAuto(options[index])
+    return props.onChangeText(options[index])
   };
 
   const searchOption = () => {
