@@ -1,15 +1,19 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { EmptyFuntion } from '../../../config/types'
 import { ClientOutputModel } from '../../../modules/graphql/client/model/ClientModel'
 
 type Props = {
-  item: ClientOutputModel,
-  index: number
+  item: ClientOutputModel;
+  index: number;
+  onPressEditClient: EmptyFuntion;
 }
 
 /**
  * Renderiza la información del cliente y la opción de editar.
- * @param {Props}
+ * @param {ClientOutputModel} props.item Data del cliente a renderizar
+ * @param {number} props.index key para el item
+ * @param {EmptyFuntion} props.onPressEditClient Resuelve el evento editar cliente 
  * @returns {JSX.Element}
  */
 
@@ -21,7 +25,11 @@ const ItemClientList = (props: Props): JSX.Element => {
         <Text>{`${firstName} ${lastName}`}</Text>
         <Text>{cedula}</Text>
       </View>
-      <TouchableOpacity><Text>Editar</Text></TouchableOpacity>
+      <TouchableOpacity 
+        onPress={props.onPressEditClient}
+      >
+        <Text>Editar</Text>
+      </TouchableOpacity>
     </View>
   )
 }

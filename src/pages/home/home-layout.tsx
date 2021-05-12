@@ -3,7 +3,7 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
 import LoadingComponent from '../../components/loading-component';
 import { useGetClients } from '../../modules/graphql/client/ClientController';
-import { ClientInputModel } from '../../modules/graphql/client/model/ClientModel';
+import { ClientInputModel, ClientOutputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
 import ModalForm from './components/modal-form';
 
@@ -21,6 +21,10 @@ const HomeLayout = () => {
     setStateModal(false)
   }
 
+  const onPressEditClient = (client: ClientOutputModel) => {
+    
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>
@@ -32,7 +36,12 @@ const HomeLayout = () => {
             <FlatList
               keyExtractor={(item, index) => index.toString()}
               data={clients}
-              renderItem={({ item, index}) => <ItemClientList item={item} index={index} />}
+              renderItem={({ item, index}) => 
+                <ItemClientList
+                  item={item} 
+                  index={index}
+                  onPressEditClient={() => onPressEditClient(item)}
+              />}
               refreshing={false}
               onRefresh={() => refetch()}
             />
