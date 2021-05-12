@@ -43,12 +43,50 @@ export default function ModalForm(props: Props): JSX.Element {
 
   const createClient = useCreateClient(
     () => {
-     
       Alert.alert('Creación Exitosa')
     },
     () => {Alert.alert(TEXT_ERROR)},
   )
-  
+
+  const onPressSaveClient = () => {
+
+  }
+
+  const setNameValue = (value: string) => {
+    client.firstName = value;
+    setClient({...client});
+  };
+
+  const setLastNameValue = (value: string) => {
+    client.lastName = value;
+    setClient({...client});
+  };
+
+  const setCedulaValue = (value: string) => {
+    client.cedula = value;
+    setClient({...client});
+  };
+
+  const setCellphoneValue = (value: string) => {
+    client.cellphone = value;
+    setClient({...client});
+  };
+
+  const setEmailValue = (value: string) => {
+    client.email = value;
+    setClient({...client});
+  };
+
+  const setCountryValue = (value: string) => {
+    client.address.country = value;    
+    setClient({...client});
+  };
+
+  const setStreetAddressValue = (value: string) => {
+    client.address.streetAddress = value;    
+    setClient({...client});
+  };
+
   return (
     <Modal visible={visibleModal} animationType="fade">
       <View style={styles.containerModal}>
@@ -62,16 +100,16 @@ export default function ModalForm(props: Props): JSX.Element {
         <Text style={styles.textTitle}>Crear cliente</Text>
         <View style={styles.sectionForm}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <InputForm label="Nombre" onChangeText={()=>{}} />
-            <InputForm label="Apellido" onChangeText={()=>{}} />
-            <InputForm label="Cédula" onChangeText={()=>{}} />
-            <InputForm label="Celular" onChangeText={()=>{}} />
-            <InputForm label="Correo electrónico" onChangeText={()=>{}} />
-            <InputForm label="País" onChangeText={()=>{}} />
+            <InputForm value={client.firstName} label="Nombre" onChangeText={setNameValue} />
+            <InputForm value={client.lastName} label="Apellido" onChangeText={setLastNameValue} />
+            <InputForm value={client.cedula} label="Cédula" onChangeText={setCedulaValue} />
+            <InputForm value={client.cellphone} label="Celular" onChangeText={setCellphoneValue} />
+            <InputForm label="Correo electrónico" onChangeText={setEmailValue} />
+            <InputForm label="País" onChangeText={setCountryValue} />
             <InputForm label="Ciudad" onChangeText={()=>{}} />
-            <InputForm label="Dirección" onChangeText={()=>{}} />
+            <InputForm label="Dirección" onChangeText={setStreetAddressValue} />
             <View style={styles.containerButton}>
-              <ButtonFlex title="GUARDAR" onPress={() => {}} />
+              <ButtonFlex title="GUARDAR" onPress={onPressSaveClient} />
             </View>
           </ScrollView>
         </View>

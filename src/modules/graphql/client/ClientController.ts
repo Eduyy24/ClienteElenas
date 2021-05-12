@@ -55,7 +55,6 @@ export const getClients = () => {
   const [launch, result] = useMutation(CREATE_CLIENT_GQL)
 
   useEffect(() => {
-    console.log('useEffect', result);
     if (result.data) {
       successResolve && successResolve()
     }

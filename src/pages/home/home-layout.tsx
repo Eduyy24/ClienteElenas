@@ -9,10 +9,11 @@ import ModalForm from './components/modal-form';
 
 
 const HomeLayout = () => {
-  let client = new ClientInputModel() // variable de paso, no re-render
+  let client = new ClientInputModel() // variable de paso, para evitar hacer re-render
   const [stateModal, setStateModal] = useState(false)
   const {clients, refetch} = getClients()
-
+  console.log(clients);
+  
   const onPressCreateClient = () => {
     setStateModal(true)
   }
@@ -22,6 +23,7 @@ const HomeLayout = () => {
     refetch()
     setStateModal(false)
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.sectionTitle}>

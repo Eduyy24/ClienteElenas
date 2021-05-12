@@ -5,6 +5,7 @@ import { BACK_COLOR, WHITE_COLOR } from '../config/constans';
 export type Props = {
   label: string;
   onChangeText: (text: string) => void;
+  value?: string;
 }
 
 /**
@@ -21,6 +22,7 @@ export default function InputForm(props: Props): JSX.Element {
         <TextInput
           style={styles.TextInput}
           onChangeText={props.onChangeText}
+          value={props.value}
         />
       </View>
     </View>
