@@ -9,10 +9,14 @@ import ModalForm from './components/modal-form';
 
 
 const HomeLayout = () => {
-  const [stateModal, setStateModal] = useState(false)
   const {clients, refetch} = useGetClients()
-  
+  const [stateModal, setStateModal] = useState(false)
+  const [mode, setMode] = useState('')
+  const [clientRender, setClientRender] = useState(new ClientInputModel())
+
   const onPressCreateClient = () => {
+    setMode('create')
+    setClientRender(new ClientInputModel())
     setStateModal(true)
   }
 
@@ -22,7 +26,21 @@ const HomeLayout = () => {
   }
 
   const onPressEditClient = (client: ClientOutputModel) => {
-    
+    clientRender.firstName = client.firstName;
+    clientRender.lastName = client.lastName;
+    clientRender.email = client.email;
+    clientRender.cellphone = client.cellphone;
+    clientRender.cedula = client.cedula;
+    clientRender.address.streetAddress = client.address;
+    clientRender.address.stateId = client.state.id;
+    clientRender.address.stateShortCode = client.state.shortCode;
+    const city = client.state.cities.find(item => item.name === client.city);
+    clientRender.address.city = client.city;
+    clientRender.address.cityId = city?.id || 0;
+
+    setMode('update')
+    setClientRender(clientRender)
+    setStateModal(true)
   }
 
   return (
@@ -53,10 +71,11 @@ const HomeLayout = () => {
       <View style={styles.sectionFooter}>
         <ButtonFlex title="CREAR" onPress={onPressCreateClient} />
       </View>
-      <ModalForm 
+      <ModalForm
+        type={mode}
         visibleModal={stateModal}
         onPressCloseModal={onPressCloseModal} 
-        client={new ClientInputModel()}
+        client={clientRender}
       />
     </View>
   )

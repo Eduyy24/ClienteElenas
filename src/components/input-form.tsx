@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 import Menu, { MenuItem } from 'react-native-material-menu';
 import { BACK_COLOR, WHITE_COLOR } from '../config/constans';
@@ -25,11 +25,19 @@ export default function InputForm(props: Props): JSX.Element {
   const [valueAuto, setValueAuto] = useState('')
   const [options, setOptions] = useState([''])
 
+  useEffect(() => {
+    if(props.value){
+      setValueAuto(props.value)
+    } else {
+      setValueAuto('')
+    }
+  }, [props.value])
+  
   let _menu: any;
 
   const setMenuRef = (ref: any) => {
     _menu = ref;
-  };
+  }
 
   const onPressOption = (index: number) => {
     _menu.hide();

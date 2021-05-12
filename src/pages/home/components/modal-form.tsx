@@ -19,8 +19,7 @@ type Props = {
   visibleModal: boolean;
   onPressCloseModal: EmptyFuntion;
   client: ClientInputModel;
-  type?: 'create' | 'update';
-  onPressButton?: () => {}
+  type: string;
 };
 
 /**
@@ -28,6 +27,9 @@ type Props = {
  * @param {EmptyFuntion} props.onPressCloseModal Callback para cerrar el modal
  * @param {boolean} props.visibleModal Controla la visibilidad del modal
  * @param {ClientInputModel} props.client Modelo de datos para el formulario
+ * @param {string} props.type controla el comportamiento, para crear o actualizar un cliente,
+ * opciones válidas: 'create', 'update'
+ * 
  * @returns {JSX.Element} ModalForm
  */
 export default function ModalForm(props: Props): JSX.Element {
@@ -49,7 +51,19 @@ export default function ModalForm(props: Props): JSX.Element {
     if (statesData) {
       setStates(statesData.map((item) => item.name))
     }
+    // si viene un cliente con stateId cargo tanto la lista del input,
+    // para extraer la data al seleccionar una nueva ciudad.
+    if (props.client.address.stateId){ 
+      const state = statesData.find((item) => item.id === props.client.address.stateId)
+      const cities = state?.cities.map((item) => item.name) || []
+      setCitiesData(state?.cities || []); 
+      setCities(cities)
+    }
   }, [statesData])
+
+  const getNameState = (id: number) => {
+    return statesData.find((item) => item.id === id)?.name || ''
+  }
 
   const createClient = useCreateClient(
     () => {
@@ -77,6 +91,11 @@ export default function ModalForm(props: Props): JSX.Element {
       Alert.alert('Por favor diligenciar todos los campos')
     }
   }, [client])
+
+  const onPressUpdateClient = () => {
+
+  }
+
 
   const setNameValue = (value: string) => {
     client.firstName = value;
@@ -115,7 +134,7 @@ export default function ModalForm(props: Props): JSX.Element {
 
   const onChangeState = (value: string) => {
     const state = statesData.find((item) => item.name === value)
-    client.address.stateId = parseInt(state?.id || '0');
+    client.address.stateId = state?.id || 0;
     client.address.stateShortCode = state?.shortCode || '';
     
     const cities = state?.cities.map((item) => item.name) || []
@@ -126,7 +145,7 @@ export default function ModalForm(props: Props): JSX.Element {
 
   const onChangeCity = (value: string) => {
     const city = citiesData.find((item) => item.name === value)
-    client.address.cityId = parseInt(city?.id || '0');
+    client.address.cityId = city?.id || 0;
     client.address.city = city?.name || '';
   };
 
@@ -140,34 +159,52 @@ export default function ModalForm(props: Props): JSX.Element {
             <Text>Cerrar</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.textTitle}>Crear cliente</Text>
+        {
+          props.type === 'create' ? ( // en caso de haber mas types, se debe agregar mas comparaciones
+            <Text style={styles.textTitle}>Crear cliente</Text>
+          ):(
+            <Text style={styles.textTitle}>Actualizar cliente</Text>
+          )
+        }
         <View style={styles.sectionForm}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <InputForm value={client.firstName} label="Nombre" onChangeText={setNameValue} />
             <InputForm value={client.lastName} label="Apellido" onChangeText={setLastNameValue} />
             <InputForm value={client.cedula} label="Cédula" onChangeText={setCedulaValue} />
-            <InputForm value={client.cellphone} label="Celular" onChangeText={setCellphoneValue} />
-            <InputForm label="Correo electrónico" onChangeText={setEmailValue} />
-            <InputForm label="País" onChangeText={setCountryValue} />
+            <InputForm value={client.cellphone.replace('+57 ', '')} label="Celular" onChangeText={setCellphoneValue} />
+            <InputForm value={client.email} label="Correo electrónico" onChangeText={setEmailValue} />
+            { // campo no mapeado para actualizar clientes
+              props.type === 'create' && (
+                <InputForm label="País" onChangeText={setCountryValue} />
+              )
+            }
             <InputForm
               label="Departamento"
+              value={client.address.stateId ? getNameState(client.address.stateId) : ''}
               selectList={states}
               type="selectSearch"
               onChangeText={onChangeState}
             />
-            {
+            { // si no existe stateId no han selecionado departamento
               !!client.address.stateId && (
                 <InputForm
                   label="Ciudad"
+                  value={client.address.city}
                   selectList={cities}
                   type="selectSearch"
                   onChangeText={onChangeCity}
                 />
               )
             }
-            <InputForm label="Dirección" onChangeText={setStreetAddressValue} />
+            <InputForm value={client.address.streetAddress} label="Dirección" onChangeText={setStreetAddressValue} />
             <View style={styles.containerButton}>
-              <ButtonFlex title="GUARDAR" onPress={onPressSaveClient} />
+              {
+                props.type === 'create' ? ( // en caso de haber mas types, se debe agregar mas comparaciones
+                  <ButtonFlex title="GUARDAR" onPress={onPressSaveClient} />
+                ) : (
+                  <ButtonFlex title="ACTUALIZAR" onPress={onPressUpdateClient} />
+                )
+              }
             </View>
           </ScrollView>
         </View>

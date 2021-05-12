@@ -28,6 +28,7 @@ export const CLIENTS_SEARCH_FIELDS = gql`
         city
         state {
             id
+            shortCode
             name
             cities {
                 id

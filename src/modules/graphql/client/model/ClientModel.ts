@@ -3,7 +3,7 @@
  * @class
  */
 export class CityModel {
-  id = '';
+  id = 0;
   name = '';
 }
 
@@ -12,7 +12,7 @@ export class CityModel {
  * @class
  */
 export class StateModel {
-  id = '';
+  id = 0;
   name = '';
   shortCode = '';
   cities = Array<CityModel>(0);
@@ -28,7 +28,7 @@ export class StateModel {
   cityId = 0
   stateShortCode = ''
   stateId = 0
-  country = ''
+  country?: string
 }
 
 
@@ -45,7 +45,7 @@ export class ClientOutputModel {
   cellphone = '';
   email = '';
   city = '';
-  state?: StateModel;
+  state = new StateModel();
 }
 
 
