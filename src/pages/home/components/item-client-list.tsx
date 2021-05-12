@@ -1,6 +1,6 @@
 import React from 'react'
-import { View,Text, StyleSheet } from 'react-native'
-import {ClientOutputModel} from '../../../modules/graphql/client/model/ClientModel'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { ClientOutputModel } from '../../../modules/graphql/client/model/ClientModel'
 
 type Props = {
   item: ClientOutputModel,
@@ -14,11 +14,14 @@ type Props = {
  */
 
 const ItemClientList = (props: Props): JSX.Element => {
-  const {firstName, lastName, cedula} = props.item;
+  const { firstName, lastName, cedula } = props.item;
   return (
     <View style={styles.container} key={props.index}>
-      <Text>{`${firstName} ${lastName}`}</Text>
-      <Text>{cedula}</Text>
+      <View>
+        <Text>{`${firstName} ${lastName}`}</Text>
+        <Text>{cedula}</Text>
+      </View>
+      <TouchableOpacity><Text>Editar</Text></TouchableOpacity>
     </View>
   )
 }
@@ -26,6 +29,8 @@ const ItemClientList = (props: Props): JSX.Element => {
 const styles = StyleSheet.create({
   container: {
     marginVertical: 5,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
 })
 

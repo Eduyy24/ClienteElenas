@@ -9,7 +9,6 @@ import ModalForm from './components/modal-form';
 
 
 const HomeLayout = () => {
-  let client = new ClientInputModel() // variable de paso, para evitar hacer re-render
   const [stateModal, setStateModal] = useState(false)
   const {clients, refetch} = useGetClients()
   
@@ -18,7 +17,6 @@ const HomeLayout = () => {
   }
 
   const onPressCloseModal = () => {
-    client = new ClientInputModel();
     refetch()
     setStateModal(false)
   }
@@ -49,7 +47,7 @@ const HomeLayout = () => {
       <ModalForm 
         visibleModal={stateModal}
         onPressCloseModal={onPressCloseModal} 
-        client={client}
+        client={new ClientInputModel()}
       />
     </View>
   )
