@@ -4,7 +4,7 @@ import ItemClientList from '../../../../src/pages/home/components/item-client-li
 import { ClientOutputModel } from '../../../../src/modules/graphql/client/model/ClientModel';
 
 
-describe('<HomeLayout />', () => {
+describe('<ItemClientList />', () => {
   const clientOut = new ClientOutputModel();
     clientOut.firstName = "Eduardo"
     clientOut.lastName = "Pinedo"

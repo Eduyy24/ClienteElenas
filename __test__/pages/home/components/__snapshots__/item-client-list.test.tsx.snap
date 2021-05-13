@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<HomeLayout /> Ui del componente 1`] = `
+exports[`<ItemClientList /> Ui del componente 1`] = `
 <View
   style={
     Object {
