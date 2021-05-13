@@ -16,6 +16,7 @@ export type Props = {
  * Renderiza input para diligenciamiento de información
  * @param {string} props.label Label del input
  * @param {string} props.value opcional, inserta el valor para el input
+ * @param {string[]} props.selectList opcional, lista de opciones a presentar
  * @param {(text: string) => void} props.onChangeText Callback para el cambio de texto,
  * aplica para el input por default y type: "selectSearch"
  * 
@@ -91,7 +92,7 @@ export default function InputForm(props: Props): JSX.Element {
               <Menu ref={setMenuRef}> 
                 {props.selectList && ( // libreria que renderia el resultado de la busqueda
                   options.map((item: string, index: number) => (
-                    <MenuItem onPress={() => onPressOption(index)}>
+                    <MenuItem testID={`item${index}`} key={index} onPress={() => onPressOption(index)}>
                       {item}
                     </MenuItem>
                   ))

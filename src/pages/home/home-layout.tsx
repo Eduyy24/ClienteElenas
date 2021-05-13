@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { View, Text, FlatList, StyleSheet } from 'react-native';
 import ButtonFlex from '../../components/button-flex';
-import LoadingComponent from '../../components/loading-component';
+import LoadingComponent from '../../components/loading-generic';
 import { useGetClients } from '../../modules/graphql/client/ClientController';
 import { ClientInputModel, ClientOutputModel } from '../../modules/graphql/client/model/ClientModel';
 import ItemClientList from './components/item-client-list';
