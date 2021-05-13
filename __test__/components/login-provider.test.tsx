@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor, act } from '@testing-library/react-native'
+import { render} from '@testing-library/react-native'
 import LoginProvider from '../../src/components/login-provider';
 import { MockedProvider } from '@apollo/client/testing';
 import LoginMutationMock from '../../__mocks__/queries.moks';
@@ -25,8 +25,8 @@ describe('<LoginProvider />', () => {
   //   let wraper = render(component)
     
 
-  //   const addBookMutationMock = LoginMutationMock[0].result;
-  //   await waitFor(() => expect(addBookMutationMock).toHaveBeenCalled());
+  //   await new Promise(resolve => setTimeout(resolve, 0));
+
 
   //   // const loading = wraper.queryByText('Clientes Elenas')
   //   // expect(loading).toBeFalsy();
