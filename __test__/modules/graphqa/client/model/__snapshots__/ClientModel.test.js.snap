@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ClientModel Generar ClientInputModel 1`] = `
+CityModel {
+  "id": 0,
+  "name": "",
+}
+`;

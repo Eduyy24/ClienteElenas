@@ -5,7 +5,7 @@ import { ClientOutputModel } from '../../../modules/graphql/client/model/ClientM
 
 type Props = {
   item: ClientOutputModel;
-  index: number;
+  index?: number;
   onPressEditClient: EmptyFuntion;
 }
 
