@@ -1,7 +1,7 @@
 import React from 'react';
 import { ApolloProvider } from '@apollo/client';
 import ApolloConfig from './src/modules/graphql/apollo';
-import LoginProvider from './src/login-provider';
+import LoginProvider from './src/components/login-provider';
 
 
 export default function App() {

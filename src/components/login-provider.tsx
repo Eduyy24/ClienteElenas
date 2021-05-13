@@ -1,10 +1,9 @@
 import React, {useEffect, useState } from 'react';
 import { ApolloProvider } from '@apollo/client';
-import { View, Text } from 'react-native';
-import { getLoginMutation } from './modules/graphql/client/ClientController';
-import Home from './pages/home/home';
-import ApolloConfig from './modules/graphql/apollo';
-import LoadingComponent from './components/loading-generic';
+import { getLoginMutation } from '../modules/graphql/client/ClientController';
+import Home from '../pages/home/home';
+import ApolloConfig from '../modules/graphql/apollo';
+import LoadingComponent from './loading-generic';
 
 /**
  * Componente encargado de manejar el login del aplicativo, en función del estado de este,
