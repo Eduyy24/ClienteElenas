@@ -86,14 +86,14 @@ export default function InputForm(props: Props): JSX.Element {
                   style={styles.searhOption}
                   onPress={searchOption}
                 >
-                  <Text>Buscar</Text>
+                  <Text testID={`buscar_${props.label}`}>Buscar</Text>
                 </TouchableOpacity>
               </View>
               <Menu ref={setMenuRef}> 
                 {props.selectList && ( // libreria que renderia el resultado de la busqueda
                   options.map((item: string, index: number) => (
                     <MenuItem testID={`item${index}`} key={index} onPress={() => onPressOption(index)}>
-                      {item}
+                      <Text>{item}</Text>
                     </MenuItem>
                   ))
                 )}

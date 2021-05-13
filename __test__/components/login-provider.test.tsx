@@ -2,7 +2,7 @@ import React from 'react';
 import { render, waitFor, act } from '@testing-library/react-native'
 import LoginProvider from '../../src/components/login-provider';
 import { MockedProvider } from '@apollo/client/testing';
-import LoginMutationMock from '../../__mocks__/login-mutation.mock';
+import LoginMutationMock from '../../__mocks__/queries.moks';
 
 describe('<LoginProvider />', () => {
   test('Ui del componente cuando esta cargando', () => {
