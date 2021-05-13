@@ -73,12 +73,12 @@ const HomeLayout = () => {
       <View style={styles.sectionFooter}>
         <ButtonFlex title="CREAR" onPress={onPressCreateClient} />
       </View>
-      <ModalForm
+      {stateModal && (<ModalForm
         type={mode}
         visibleModal={stateModal}
         onPressCloseModal={onPressCloseModal} 
         client={clientRender}
-      />
+      />)}
     </View>
   )
 }
