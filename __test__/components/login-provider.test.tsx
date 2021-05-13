@@ -24,12 +24,13 @@ describe('<LoginProvider />', () => {
     
   //   let wraper = render(component)
     
-  //   //await waitFor(() => new Promise(resolve => setTimeout(resolve, 0)))
-  //   act(() => jest.advanceTimersByTime(1000))
 
-  //   const loading = wraper.queryByText('Clientes Elenas')
-  //   expect(loading).toBeFalsy();
-  //   //expect(wraper.toJSON()).toMatchSnapshot();
+  //   const addBookMutationMock = LoginMutationMock[0].result;
+  //   await waitFor(() => expect(addBookMutationMock).toHaveBeenCalled());
+
+  //   // const loading = wraper.queryByText('Clientes Elenas')
+  //   // expect(loading).toBeFalsy();
+  //   expect(wraper.toJSON()).toMatchSnapshot();
   // })
   
 })

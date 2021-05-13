@@ -22,3 +22,26 @@ exports[`<LoginProvider /> Ui del componente cuando esta cargando 1`] = `
   </Text>
 </View>
 `;
+
+exports[`<LoginProvider /> Ui del componente cuando termina la carga 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "fontWeight": "bold",
+      }
+    }
+  >
+    Cargando...
+  </Text>
+</View>
+`;

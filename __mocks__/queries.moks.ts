@@ -1,4 +1,4 @@
-import { LOGIN_GQL } from "../src/modules/graphql/client/gql/mutations";
+import { CREATE_CLIENT_GQL, LOGIN_GQL } from "../src/modules/graphql/client/gql/mutations";
 import { STATES_GQL } from "../src/modules/graphql/client/gql/queries";
 
 const QueryMock = [
@@ -10,13 +10,15 @@ const QueryMock = [
         password: '13123123',
       },
     },
-    result: {
-      data: {
-        login: {
-          token: 'Token werwerwerwer',
-        }
-      },
-    },
+    result: () => {
+      return {
+        data: {
+          login: {
+            token: 'Token werwerwerwer',
+          }
+        },
+      }
+    }
   },
   {
     request: {
@@ -48,6 +50,35 @@ const QueryMock = [
                   ],
               },
           ],
+        },
+    },
+  },
+  {
+    request: {
+        query: CREATE_CLIENT_GQL,
+        variables: {
+            input: {
+                firstName: 'Leandro',
+                lastName: 'Castro',
+                email: 'eee@ii.oo',
+                cedula: '998877',
+                cellphone: '+573124567898',
+                address: {
+                    streetAddress: 'Test streetAddress',
+                    city: 'Leticia',
+                    cityId: 3,
+                    stateShortCode: 'AMA',
+                    stateId: 2,
+                    country: 'Colombia',
+                },
+            },
+        },
+    },
+    result: {
+        data: {
+            createClient: {
+                __typename: 'Client',
+            },
         },
     },
 },
