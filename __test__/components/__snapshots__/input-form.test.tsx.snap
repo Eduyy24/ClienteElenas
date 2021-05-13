@@ -41,7 +41,7 @@ exports[`<InputForm /> Comprobar la UI del componente ButtonFlex 1`] = `
           "flex": 1,
         }
       }
-      testID="input"
+      testID="Nombre"
       underlineColorAndroid="transparent"
       value="Luis"
     />

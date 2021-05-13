@@ -16,7 +16,7 @@ describe('<InputForm />', () => {
     const inputForm = <InputForm onChangeText={onPress} label="Nombre" />
     const wraper = render(inputForm)
 
-    const input = wraper.getByTestId('input')
+    const input = wraper.getByTestId('Nombre')
     fireEvent.changeText(input, 'Eduardo')
 
     expect(onPress).toHaveBeenCalledTimes(1);
@@ -34,7 +34,7 @@ describe('<InputForm />', () => {
       />
     const wraper = render(inputForm)
 
-    const input = wraper.getByTestId('input')
+    const input = wraper.getByTestId('Nombre')
     fireEvent.changeText(input, 'Fons')
 
     const btnBuscar = wraper.getByText('Buscar')
@@ -62,7 +62,7 @@ describe('<InputForm />', () => {
       />
     const wraper = render(inputForm)
 
-    const input = wraper.getByTestId('input')
+    const input = wraper.getByTestId('Ciudad')
     const btnBuscar = wraper.getByText('Buscar')
     fireEvent.press(btnBuscar)
 
