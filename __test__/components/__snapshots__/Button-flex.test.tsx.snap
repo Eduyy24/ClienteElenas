@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Button Snapshot Comprobar la UI del componente Button 1`] = `
+exports[`<ButtonFlex /> Comprobar la UI del componente ButtonFlex 1`] = `
 <View
   accessible={true}
   focusable={true}

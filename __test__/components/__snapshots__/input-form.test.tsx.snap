@@ -1,0 +1,111 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<InputForm /> Comprobar la UI del componente ButtonFlex 1`] = `
+<View
+  style={
+    Object {
+      "height": 90,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 10,
+      }
+    }
+  >
+    Nombre
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#A2A7A8",
+        "borderRadius": 15,
+        "height": "40%",
+        "maxHeight": 50,
+        "minHeight": 30,
+        "paddingHorizontal": 5,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={[Function]}
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "color": "#fff",
+          "flex": 1,
+        }
+      }
+      testID="input"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+</View>
+`;
+
+exports[`<InputForm /> se valida el llamado al callback, cuando se escribe en el input, se genera snapshot del comportamiento 1`] = `
+<View
+  style={
+    Object {
+      "height": 90,
+      "justifyContent": "center",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "fontSize": 16,
+        "marginVertical": 10,
+      }
+    }
+  >
+    Nombre
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#A2A7A8",
+        "borderRadius": 15,
+        "height": "40%",
+        "maxHeight": 50,
+        "minHeight": 30,
+        "paddingHorizontal": 5,
+      }
+    }
+  >
+    <TextInput
+      allowFontScaling={true}
+      onChangeText={
+        [MockFunction] {
+          "calls": Array [
+            Array [
+              "Eduardo",
+            ],
+          ],
+          "results": Array [
+            Object {
+              "type": "return",
+              "value": undefined,
+            },
+          ],
+        }
+      }
+      rejectResponderTermination={true}
+      style={
+        Object {
+          "color": "#fff",
+          "flex": 1,
+        }
+      }
+      testID="input"
+      underlineColorAndroid="transparent"
+    />
+  </View>
+</View>
+`;

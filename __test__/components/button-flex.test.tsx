@@ -1,19 +1,19 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
-import Button from '../../src/components/button-flex';
 import { fireEvent, render } from '@testing-library/react-native'
 
+import ButtonFlex from '../../src/components/button-flex';
 
-describe('Button Snapshot', () => {
 
-  test('Comprobar la UI del componente Button', () => {
-    const footer = create(<Button onPress={() => {}} title="CREAR" />);
-    expect(footer.toJSON()).toMatchSnapshot();
+describe('<ButtonFlex />', () => {
+
+  test('Comprobar la UI del componente ButtonFlex', () => {
+    const {toJSON} = render(<ButtonFlex onPress={() => {}} title="CREAR" />);
+    expect(toJSON()).toMatchSnapshot();
   });
 
-  test('examples of some things', async () => {
+  test('Validación de la ejecución del callback cuando se interactua con el Button', async () => {
     const onPress = jest.fn()
-    const { getByText } = render(<Button onPress={onPress} title="CREAR" />)
+    const { getByText } = render(<ButtonFlex onPress={onPress} title="CREAR" />)
   
     const button = getByText('CREAR')
     fireEvent.press(button)

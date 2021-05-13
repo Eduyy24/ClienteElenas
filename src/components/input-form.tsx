@@ -64,6 +64,7 @@ export default function InputForm(props: Props): JSX.Element {
         {
           !props.type && (
             <TextInput
+              testID="input"
               style={styles.TextInput}
               onChangeText={props.onChangeText}
               value={props.value}
@@ -75,6 +76,7 @@ export default function InputForm(props: Props): JSX.Element {
             <View style={styles.containerAutocomplete}>
               <View style={styles.subContainerAuto}>
                 <TextInput
+                  testID="input"
                   style={styles.TextInput}
                   onChangeText={onChangeTextAuto}
                   value={valueAuto}
